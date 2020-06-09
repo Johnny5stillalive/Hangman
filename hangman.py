@@ -18,15 +18,18 @@ while playing:
         while guesses < tries:
             print("\n")
             print(f"You have {tries - guesses} tries left.")
+
             if len(letter_list) > 0:
                 print(f"You have tried these letters {letter_list}")
             print("".join(word2))
             letter_guess = input("Input a letter: ")
             i = 0
-            if len(letter_guess) > 1:
-                print("You should input a single letter.")
+            if letter_guess == "exit":
+                break
             elif not letter_guess.islower():
                 print("It is not an ASCII lowercase letter.")
+            elif len(letter_guess) > 1:
+                print("You should input a single letter.")
             elif letter_guess in letter_list:
                 print("You already typed this letter.")
             elif letter_guess not in word:
@@ -45,7 +48,7 @@ while playing:
             if guesses == tries and word != word2:
                 print(f"The word was {word}")
                 print("You are hanged!\n")
-            if letter_guess not in letter_list:
+            if letter_guess not in letter_list and letter_guess.islower() and not len(letter_guess) > 1:
                 letter_list.append(letter_guess)
 
     elif answer == "exit":
